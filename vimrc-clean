@@ -44,6 +44,7 @@
     let g:github_issues_no_omni = 1
     let g:incsearch#auto_nohlsearch = 1
     let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#enable_auto_close_preview=1
     let g:php_refactor_command='~/bin/refactor.phar'
 
     " Golang variables
@@ -59,6 +60,9 @@
     let g:go_version_warning = 0
 
 
+    " Open links with xdg-open
+    let g:utl_cfg_hdl_scm_http="silent !xdg-open '%u' >/dev/null"
+
     " Disable PHP Mess detector
     let g:phpqa_messdetector_autorun=0
     let g:phpqa_codesniffer_autorun=0
@@ -68,7 +72,7 @@
 
     let g:org_todo_keywords = [['TODO', 'IN_PROGRESS', '|', 'BLOCKED', 'DONE'],
       \   ['|', 'CANCELED']]
-    let g:org_todo_keyword_faces = [['IN_PROGRESS', '30'], ['BLOCKED',
+    let g:org_todo_keyword_faces = [['IN_PROGRESS', 'cyan'], ['BLOCKED',
       \   [':foreground red', ':background black', ':weight bold',
       \   ':slant italic', ':decoration underline']]]
 
@@ -81,6 +85,10 @@
 
     map <S-M-Left> <C-o>
     map <S-M-Right> <C-i>
+
+    " hjkl
+    map L w
+    map H b
     "
 " }}}
 
@@ -107,6 +115,7 @@
         Plugin 'rayburgemeestre/phpfolding.vim'
         Plugin 'tpope/vim-fugitive'
         Plugin 'tpope/vim-rhubarb'
+        Plugin 'tpope/vim-surround'
         Plugin 'mbbill/undotree'
         Plugin 'Shougo/neocomplete.vim'
         Plugin 'd11wtq/ctrlp_bdelete.vim'
@@ -130,6 +139,9 @@
         Plugin 'terryma/vim-multiple-cursors'
         Plugin 'pangloss/vim-javascript'
         Plugin 'mxw/vim-jsx'
+        Plugin 'alvan/vim-closetag'
+        Plugin 'rodjek/vim-puppet'
+        Plugin 'rust-lang/rust.vim'
 
         " Orgmode plugins
         Plugin 'jceb/vim-orgmode'
@@ -208,6 +220,16 @@ function! s:CloseHiddenBuffers()
     endif
   endfor
 endfunction
+" }}}
+
+" Format the hyperlinks from github for orgmode {{{
+
+func ConvertLinks()
+    %g/^$/d
+    %s/ ·.*//
+    %v/https/exec 'norm! ddpI][' | exec 'norm A]]' | exec 'norm! kI[[' | exec 'norm! Jx'
+endfunc
+command ConvertLinks silent call ConvertLinks()
 " }}}
 
 " Zoom / Restore window. {{{
