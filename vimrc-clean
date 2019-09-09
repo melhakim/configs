@@ -116,6 +116,7 @@
         Plugin 'tpope/vim-fugitive'
         Plugin 'tpope/vim-rhubarb'
         Plugin 'tpope/vim-surround'
+        Plugin 'tpope/vim-repeat'
         Plugin 'mbbill/undotree'
         Plugin 'Shougo/neocomplete.vim'
         Plugin 'd11wtq/ctrlp_bdelete.vim'
