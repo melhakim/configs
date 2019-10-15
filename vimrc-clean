@@ -1,6 +1,8 @@
 " vim:fdm=marker
 " Setting Options {{{
     syntax enable
+    scriptencoding utf-8
+    set encoding=utf-8
     set bs=indent,eol,start
     set et sts=4 ts=4 sw=4
     set ai si
@@ -146,6 +148,7 @@
 
         " Orgmode plugins
         Plugin 'jceb/vim-orgmode'
+        Plugin 'vim-scripts/utl.vim'
         Plugin 'tpope/vim-speeddating'
         Plugin 'mattn/calendar-vim'
         Plugin 'vim-scripts/taglist.vim'
