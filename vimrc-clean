@@ -20,8 +20,8 @@
     set hidden
     set rtp+=~/.fzf
     set colorcolumn=120
-    set vb
-    set guifont=Menlo\ Regular:h15
+    "set vb
+    "set guifont=Menlo\ Regular:h15
     "Stolen from http://codeinthehole.com/writing/using-the-silver-searcher-with-vim/
     if executable("ag")
         set grepprg=ag\ --nogroup\ --nocolor\ --column
@@ -42,7 +42,7 @@
     let g:ctrlp_match_window = 'results:100'
     let g:ctrlp_max_files = 0
     let g:PreserveNoEOL = 1
-    let g:github_access_token=""
+    let g:github_access_token="01593d9f1e4b09dc68e1e45eb5cd16e764067da5"
     let g:github_issues_no_omni = 1
     let g:incsearch#auto_nohlsearch = 1
     let g:neocomplete#enable_at_startup = 1
@@ -84,6 +84,7 @@
     noremap <C-\> :CtrlPFunky<CR>
     noremap <F2> :NeoCompleteToggle<CR>
 
+    noremap ,l iLogger::error();hi
 
     map <S-M-Left> <C-o>
     map <S-M-Right> <C-i>
@@ -103,7 +104,7 @@
     call vundle#begin()
     " let Vundle manage Vundle, required
     " Plugins {{{
-        Plugin 'VundleVim/Vundle.vim'
+        "Plugin 'VundleVim/Vundle.vim'
         "Plugin 'scrooloose/nerdtree'
         Plugin 'scrooloose/nerdcommenter'
         Plugin 'altercation/vim-colors-solarized'
@@ -148,7 +149,6 @@
 
         " Orgmode plugins
         Plugin 'jceb/vim-orgmode'
-        Plugin 'vim-scripts/utl.vim'
         Plugin 'tpope/vim-speeddating'
         Plugin 'mattn/calendar-vim'
         Plugin 'vim-scripts/taglist.vim'
