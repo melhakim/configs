@@ -272,7 +272,9 @@ if has("autocmd")
 
   " PHP documenter script bound to Leader-d
   autocmd FileType php nnoremap <Leader>d :call PhpDocSingle()<CR>
-  autocmd FileType php vnoremap <Leader>d :call PhpDocRange()<CR> 
+  autocmd FileType php vnoremap <Leader>d :call PhpDocRange()<CR>
+
+  autocmd FileType puppet setlocal sw=8
 
   " Insert use statements for vim-php-namespace
   autocmd FileType php inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
