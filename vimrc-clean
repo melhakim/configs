@@ -25,7 +25,7 @@
     "set guifont=Menlo\ Regular:h15
     "Stolen from http://codeinthehole.com/writing/using-the-silver-searcher-with-vim/
     if executable("rg")
-        set grepprg=rg\ --vimgrep
+        set grepprg=rg\ --no-ignore\ --vimgrep
         let g:ctrlp_user_command = 'rg %s --files --glob ""'
         let g:ctrlp_use_caching = 0
     elseif executable("ag")
@@ -53,6 +53,8 @@
     let g:neocomplete#enable_at_startup = 1
     let g:neocomplete#enable_auto_close_preview=1
     let g:php_refactor_command='~/bin/refactor.phar'
+    let &t_TI = ""
+    let &t_TE = ""
 
     " Golang variables
     let g:go_bin_path=expand("~/go/bin")
@@ -259,14 +261,16 @@ nnoremap <silent> <Esc>x :ZoomToggle<CR>
 " }}}
 
 " fix meta-keys which generate <Esc>a .. <Esc>z {{{
-let c='a'
-while c <= 'z'
-  exec "set <A-".c.">=\e".c
-  exec "imap \e".c." <A-".c.">"
-  let c = nr2char(1+char2nr(c))
-endw
+"let c='a'
+"while c <= 'z'
+  "exec "set <A-".c.">=\e".c
+  "exec "imap \e".c." <A-".c.">"
+  "let c = nr2char(1+char2nr(c))
+"endw
 
-set timeout ttimeoutlen=50
+set <A-e>=e
+imap e <A-e>
+
 " }}}
 
 " Json Formatting {{{
