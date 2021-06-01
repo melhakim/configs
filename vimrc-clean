@@ -187,7 +187,8 @@ call ctrlp_bdelete#init()
 
 " Colorschema {{{
     " Solarized Stuff
-    colorscheme solarized 
+    "colorscheme solarized 
+    colorscheme iceberg
     set cul
     let g:airline_theme='hybrid'
     highlight Specialkey ctermbg=none
