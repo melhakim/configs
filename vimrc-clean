@@ -2,6 +2,7 @@
 " Setting Options {{{
     syntax enable
     scriptencoding utf-8
+    set shell=/bin/bash
     set encoding=utf-8
     set bs=indent,eol,start
     set et sts=4 ts=4 sw=4
@@ -23,9 +24,14 @@
     set tags^=.git/tags
     "set vb
     "set guifont=Menlo\ Regular:h15
+" }}}
+
+" {{{ Use fd for ctrlp.
+    if executable('fd')
+        let g:ctrlp_user_command = 'fd -t f -c never . %s'
+        let g:ctrlp_use_caching = 0
     "Stolen from http://codeinthehole.com/writing/using-the-silver-searcher-with-vim/
-    if executable("rg")
-        set grepprg=rg\ --no-ignore\ --vimgrep
+    elseif executable("rg")
         let g:ctrlp_user_command = 'rg %s --files --glob ""'
         let g:ctrlp_use_caching = 0
     elseif executable("ag")
@@ -33,6 +39,10 @@
         let g:ctrlp_user_command = 'ag %s -l --nogroup --nocolor -g ""'
         let g:ctrlp_use_caching = 0
     endif
+
+    if executable("rg")
+        set grepprg=rg\ --no-ignore\ --vimgrep
+    end
 " }}}
 
 " Global vars {{{
