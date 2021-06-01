@@ -161,6 +161,11 @@
         Plug 'hashivim/vim-terraform'
         Plug 'wellle/targets.vim'
         Plug 'farseer90718/vim-taskwarrior'
+        Plug 'neoclide/coc.nvim'
+        "Plug 'junegunn/vim-peekaboo'
+        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'junegunn/fzf.vim'
+        Plug 'vim-scripts/AnsiEsc.vim'
 
         " Orgmode plugins
         Plug 'jceb/vim-orgmode'
