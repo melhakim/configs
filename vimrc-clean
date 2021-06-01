@@ -60,8 +60,8 @@
     let g:github_access_token="01593d9f1e4b09dc68e1e45eb5cd16e764067da5"
     let g:github_issues_no_omni = 1
     let g:incsearch#auto_nohlsearch = 1
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#enable_auto_close_preview=1
+    "let g:neocomplete#enable_at_startup = 1
+    "let g:neocomplete#enable_auto_close_preview=1
     let g:php_refactor_command='~/bin/refactor.phar'
     let &t_TI = ""
     let &t_TE = ""
@@ -99,7 +99,7 @@
 
     nmap // :noh<CR>
     noremap <C-\> :CtrlPFunky<CR>
-    noremap <F2> :NeoCompleteToggle<CR>
+    "noremap <F2> :NeoCompleteToggle<CR>
 
     noremap ,l iLogger::error();hi
 
