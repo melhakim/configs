@@ -332,3 +332,9 @@ if has("autocmd")
   autocmd QuickFixCmdPost grep cwindow "Call Cwindow after grep has been invoked
 endif
 " }}}
+
+" Lessc function {{{
+  func Lessc()
+    exe "au! BufWritePost" @% ":silent ! lessc " @% expand("%:r").".css"
+  endfunc
+" }}}
