@@ -142,7 +142,6 @@
         Plug 'tpope/vim-repeat'
         Plug 'mbbill/undotree'
         Plug 'd11wtq/ctrlp_bdelete.vim'
-        Plug 'haya14busa/incsearch.vim'
         Plug 'KabbAmine/zeavim.vim'
         Plug 'vim-scripts/pdv-standalone'
         Plug 'arnaud-lb/vim-php-namespace'
