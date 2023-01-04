@@ -155,7 +155,7 @@
         Plug 'stephpy/vim-php-cs-fixer'
         Plug 'joonty/vim-phpqa'
         Plug 'ludovicchabant/vim-gutentags'
-        Plug 'terryma/vim-multiple-cursors'
+        Plug 'mg979/vim-visual-multi' " in favor of 'terryma/vim-multiple-cursors'
         Plug 'pangloss/vim-javascript'
         Plug 'MaxMEllon/vim-jsx-pretty'
         Plug 'leafgarland/typescript-vim'
@@ -166,7 +166,7 @@
         Plug 'hashivim/vim-terraform'
         Plug 'wellle/targets.vim'
         "Plug 'farseer90718/vim-taskwarrior'
-        Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.80' }
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
         "Plug 'junegunn/vim-peekaboo'
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
         Plug 'junegunn/fzf.vim'
