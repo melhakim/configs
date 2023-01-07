@@ -62,8 +62,6 @@
     let g:github_access_token="01593d9f1e4b09dc68e1e45eb5cd16e764067da5"
     let g:github_issues_no_omni = 1
     let g:incsearch#auto_nohlsearch = 1
-    "let g:neocomplete#enable_at_startup = 1
-    "let g:neocomplete#enable_auto_close_preview=1
     let g:php_refactor_command='~/bin/refactor.phar'
     let &t_TI = ""
     let &t_TE = ""
@@ -101,7 +99,6 @@
 
     nmap // :noh<CR>
     noremap <C-\> :CtrlPFunky<CR>
-    "noremap <F2> :NeoCompleteToggle<CR>
 
     noremap ,l iLogger::error();hi
 
@@ -193,6 +190,19 @@ filetype plugin indent on    " required
 filetype plugin on
 
 call ctrlp_bdelete#init()
+
+"{{{ COC stuff
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
+" Use <c-space> to trigger completion
+if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
+else
+    inoremap <silent><expr> <c-@> coc#refresh()
+endif
+"}}}
 
 " Colorschema {{{
     " Solarized Stuff
@@ -301,7 +311,6 @@ command! -range=% JsonFormat <line1>,<line2>!python -m json.tool
 
 " Autocommands {{{
 if has("autocmd")
-  "autocmd FileType php set completefunc=phpcomplete#CompletePHP
   au FileType org let maplocalleader="\\"
 
   "au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif " Jump to the last position 
