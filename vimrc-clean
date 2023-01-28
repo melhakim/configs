@@ -90,6 +90,10 @@
       \   [':foreground red', ':background black', ':weight bold',
       \   ':slant italic', ':decoration underline']]]
 
+    let g:VM_maps = {}
+    let g:VM_maps['Select h'] = ''
+    let g:VM_maps['Select l'] = ''
+
 " }}}
 
     nmap // :noh<CR>
