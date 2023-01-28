@@ -1,4 +1,5 @@
 " vim:fdm=marker
+
 " Setting Options {{{
     syntax enable
     scriptencoding utf-8
@@ -50,8 +51,6 @@
 " Global vars {{{
     let mapleader=","
     let NERDTreeQuitOnOpen = 1
-    let php_folding = 0
-    let g:DisableAutoPHPFolding = 0
     let g:ip_skipfold = 1 " Dont open folds! 
     let g:EasyMotion_smartcase = 1
     let g:EasyMotion_keys = "abcdefghijklmnopqrstuvwxyz"
@@ -62,7 +61,6 @@
     let g:github_access_token="01593d9f1e4b09dc68e1e45eb5cd16e764067da5"
     let g:github_issues_no_omni = 1
     let g:incsearch#auto_nohlsearch = 1
-    let g:php_refactor_command='~/bin/refactor.phar'
     let &t_TI = ""
     let &t_TE = ""
 
@@ -82,9 +80,6 @@
     " Open links with xdg-open
     let g:utl_cfg_hdl_scm_http="silent !xdg-open '%u' >/dev/null"
 
-    " Disable PHP Mess detector
-    let g:phpqa_messdetector_autorun=0
-    let g:phpqa_codesniffer_autorun=0
 
     " GutenTags
     let g:gutentags_ctags_tagfile=".guten-tags"
@@ -124,6 +119,10 @@
 
     call plug#begin()
     " Plugins {{{
+        if !empty(glob("$HOME/.php.vim"))
+            source "$HOME/.php.vim"
+        endif
+
         Plug 'scrooloose/nerdcommenter'
         Plug 'altercation/vim-colors-solarized'
         Plug 'bling/vim-airline'
@@ -132,7 +131,6 @@
         Plug 'ctrlpvim/ctrlp.vim'
         Plug 'tacahiroy/ctrlp-funky'
         Plug 'vim-scripts/Improved-paragraph-motion'
-        Plug 'rayburgemeestre/phpfolding.vim'
         Plug 'tpope/vim-fugitive'
         Plug 'tpope/vim-rhubarb'
         Plug 'tpope/vim-surround'
@@ -141,16 +139,12 @@
         Plug 'd11wtq/ctrlp_bdelete.vim'
         Plug 'KabbAmine/zeavim.vim'
         Plug 'vim-scripts/pdv-standalone'
-        Plug 'arnaud-lb/vim-php-namespace'
         Plug 'vim-scripts/PreserveNoEOL'
         Plug 'flazz/vim-colorschemes'
         Plug 'xolox/vim-misc'
         Plug 'xolox/vim-notes'
-        Plug 'vim-php/vim-php-refactoring'
         Plug 'fatih/vim-go'
         Plug 'godlygeek/tabular'
-        Plug 'stephpy/vim-php-cs-fixer'
-        Plug 'joonty/vim-phpqa'
         Plug 'ludovicchabant/vim-gutentags'
         Plug 'mg979/vim-visual-multi' " in favor of 'terryma/vim-multiple-cursors'
         Plug 'pangloss/vim-javascript'
@@ -321,23 +315,9 @@ if has("autocmd")
   "Removing <C-]> mapping in help buffers
   "au FileType help :noremap <buffer> <c-]> <c-]>
   au BufNewFile,BufReadPost *.md set filetype=markdown
-
-  " PHP documenter script bound to Leader-d
-  autocmd FileType php nnoremap <Leader>d :call PhpDocSingle()<CR>
-  autocmd FileType php vnoremap <Leader>d :call PhpDocRange()<CR>
-
-  autocmd FileType puppet setlocal sw=8
-
-  " Insert use statements for vim-php-namespace
-  autocmd FileType php inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
-  autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
-
-  autocmd FileType javascript setlocal sw=2 ts=2
-
-  " Remove trailing Whitespaces for PHP files
-  autocmd BufWritePre *.php :%s/\s\+$//e
-
-  autocmd QuickFixCmdPost grep cwindow "Call Cwindow after grep has been invoked
+  au FileType puppet setlocal sw=8
+  au FileType javascript setlocal sw=2 ts=2
+  au QuickFixCmdPost grep cwindow "Call Cwindow after grep has been invoked
 endif
 " }}}
 
