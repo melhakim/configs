@@ -24,6 +24,7 @@
     set colorcolumn=120
     set tags^=.git/tags
     set belloff=all
+    set printoptions+=header:0
     "set swb
     "set vb
     "set guifont=Menlo\ Regular:h15
