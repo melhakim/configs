@@ -110,6 +110,7 @@
     map H b
     "
     map <Leader>ff :Rg <C-r><C-w><CR>
+    imap <C-Right> <Plug>(copilot-accept-word)
     
 " }}}
 
@@ -171,6 +172,8 @@
         Plug 'dag/vim-fish'
         Plug 'shumphrey/fugitive-gitlab.vim'
         Plug 'cespare/vim-toml'
+        Plug 'madox2/vim-ai'
+        Plug 'github/copilot.vim'
 
         " Orgmode plugins
         Plug 'jceb/vim-orgmode'
