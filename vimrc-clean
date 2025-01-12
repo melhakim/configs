@@ -30,24 +30,6 @@
     "set guifont=Menlo\ Regular:h15
 " }}}
 
-" {{{ Use fd for ctrlp.
-    if executable('fd')
-        let g:ctrlp_user_command = 'fd -t f -c never . %s'
-        let g:ctrlp_use_caching = 0
-    "Stolen from http://codeinthehole.com/writing/using-the-silver-searcher-with-vim/
-    elseif executable("rg")
-        let g:ctrlp_user_command = 'rg %s --files --glob ""'
-        let g:ctrlp_use_caching = 0
-    elseif executable("ag")
-        set grepprg=ag\ --nogroup\ --nocolor\ --column
-        let g:ctrlp_user_command = 'ag %s -l --nogroup --nocolor -g ""'
-        let g:ctrlp_use_caching = 0
-    endif
-
-    if executable("rg")
-        set grepprg=rg\ --no-ignore\ --vimgrep
-    end
-" }}}
 
 " Global vars {{{
     let mapleader=","
@@ -76,11 +58,9 @@
     let g:go_fmt_command = "goimports"
     let g:go_def_mode='godef'
     let g:go_version_warning = 0
-
-
+    
     " Open links with xdg-open
     let g:utl_cfg_hdl_scm_http="silent !xdg-open '%u' >/dev/null"
-
 
     " GutenTags
     let g:gutentags_ctags_tagfile=".guten-tags"
@@ -191,7 +171,39 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 filetype plugin on
 
+" CtrlP stuff {{{{{{}}}
+" {{{ Use fd for ctrlp.
+    if executable('fd')
+        let g:ctrlp_user_command = 'fd -t f -c never . %s'
+        let g:ctrlp_use_caching = 0
+    "Stolen from http://codeinthehole.com/writing/using-the-silver-searcher-with-vim/
+    elseif executable("rg")
+        let g:ctrlp_user_command = 'rg %s --files --glob ""'
+        let g:ctrlp_use_caching = 0
+    elseif executable("ag")
+        set grepprg=ag\ --nogroup\ --nocolor\ --column
+        let g:ctrlp_user_command = 'ag %s -l --nogroup --nocolor -g ""'
+        let g:ctrlp_use_caching = 0
+    endif
+
+    if executable("rg")
+        set grepprg=rg\ --no-ignore\ --vimgrep
+    end
+" }}}
 call ctrlp_bdelete#init()
+
+" Make ctrlp run on working dir
+function CtrlPTogglePwd()
+    if stridx(g:ctrlp_cmd,':pwd')<0
+        let g:ctrlp_cmd='CtrlP :pwd'
+        let g:ctrlp_working_path_mode=''
+    else
+        let g:ctrlp_cmd='CtrlP'
+        let g:ctrlp_working_path_mode='ra'
+    endif
+endfunction
+map <Leader>p :call CtrlPTogglePwd()<CR>
+" }}}
 
 "{{{ COC stuff
 " Make <CR> to accept selected completion item or notify coc.nvim to format
@@ -304,8 +316,8 @@ nnoremap <silent> <Esc>x :ZoomToggle<CR>
 
 set <A-e>=e
 imap e <A-e>
-
 " }}}
+
 
 " Json Formatting {{{
 command! -range=% JsonFormat <line1>,<line2>!python -m json.tool
@@ -325,6 +337,7 @@ if has("autocmd")
   au BufNewFile,BufReadPost *.md set filetype=markdown
   au FileType puppet setlocal sw=8
   au FileType javascript setlocal sw=2 ts=2
+  au FileType typescript setlocal sw=2 ts=2
   au QuickFixCmdPost grep cwindow "Call Cwindow after grep has been invoked
 endif
 " }}}
